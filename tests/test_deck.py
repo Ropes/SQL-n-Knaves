@@ -20,3 +20,12 @@ class TestDeck(unittest.TestCase):
         c = Card('Hearts', 'Ace')
 
         self.assertTrue(d.contains(c))
+
+    def test_deck_unicode(self):
+        d = Deck()
+        d.shuffle()
+        s = unicode(d)
+        print(s)
+
+        self.assertEqual(type(s),unicode)
+

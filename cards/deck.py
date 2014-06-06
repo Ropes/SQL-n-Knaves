@@ -1,5 +1,8 @@
 from __future__ import print_function, unicode_literals
 
+from pprint import pformat
+from random import shuffle
+
 from cards.card import Card, suits, ranks, wild
 
 class Deck(object):
@@ -22,6 +25,10 @@ class Deck(object):
             elif suit == 'Wild' and jokers:
                 self.cards.extend(\
                         [ Card('Wild', 'Joker') for x in range(jokers)])
+
+    def __unicode__(self):
+        c_str = '\n'.join([ unicode(c) for c in self.cards ])
+        return 'Deck:\n{}'.format(c_str)
         
     def contains(self, card):
         '''Check if card is contained in deck.
@@ -36,8 +43,7 @@ class Deck(object):
         return False
         
     def shuffle(self):
-        #TODO
-        pass
+        shuffle(self.cards)
 
     def deal(self, num=1):
         #TODO
