@@ -15,15 +15,13 @@ class Deck(object):
 
     def __init__(self, jokers=False):
         self.cards = []
-        suits.pop('Wild')
         for suit, ranks in suits.items():
-            for rank in ranks:
-                self.cards.append(Card(suit, rank)) 
-
-        if jokers:
-            suits.update({'Wild':wild})
-            self.cards.extend([ Card('Wild', 'Joker') for x in range(jokers)])
-
+            if suit != 'Wild':
+                for rank in ranks:
+                    self.cards.append(Card(suit, rank)) 
+            elif suit == 'Wild' and jokers:
+                self.cards.extend(\
+                        [ Card('Wild', 'Joker') for x in range(jokers)])
         
     def contains(self, card):
         '''Check if card is contained in deck.
