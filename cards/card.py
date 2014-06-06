@@ -1,20 +1,24 @@
 from __future__ import print_function, unicode_literals
 
-suits = {'Spades', 'Diamonds', 'Hearts', 'Clubs', 'Wild'}
+
 ranks = {'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10',\
-        'Jack', 'Queen', 'King', 'Joker'}
+        'Jack', 'Queen', 'King'}
+wild = {'Joker'}
+
+suits = {'Spades': ranks, 'Diamonds': ranks, 'Hearts': ranks, 'Clubs':ranks,\
+        'Wild': wild}
 
 class Card(object):
     
     def __init__(self, suit, rank):
         try:
-            assert suit in suits 
+            assert suit in suits
             self.suit = suit
         except:
             raise ValueError, 'Suit given not an acceptable value.'
 
         try:
-            assert rank in ranks
+            assert rank in suits[suit]
             self.rank = rank
         except:
             raise ValueError, 'Rank given not in acceptable ranks.'

@@ -18,8 +18,8 @@ class TestCards(unittest.TestCase):
     def test_incorrect_init(self):
 
         self.assertRaises(ValueError, Card, 'Batman', 'Joker')
-        #TODO: The following should be an error
-        #self.assertRaises(ValueError, Card, 'Spades', 'Joker')
+        #The following should raise an error
+        self.assertRaises(ValueError, Card, 'Spades', 'Joker')
         self.assertRaises(ValueError, Card, 'Spades', 'Five')
 
     def test_equality(self):
@@ -29,4 +29,11 @@ class TestCards(unittest.TestCase):
 
         self.assertNotEqual(x,y)
         self.assertEqual(x,z)
+
+    def test_equality_jokers(self):
+        x = Card('Wild', 'Joker')
+        y = Card('Wild', 'Joker')
+
+        self.assertEqual(x,y)
+
         
