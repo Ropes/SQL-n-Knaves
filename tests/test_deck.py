@@ -49,8 +49,9 @@ class TestDeck(unittest.TestCase):
         d = Deck()
 
         cards = [ d.deal() for r in range(20) ]
-        print(cards)
         print(unicode(d))
+
+        self.assertEqual(len(d.cards), 32)
 
         card_count = defaultdict(int)
         for c in cards:
@@ -59,7 +60,21 @@ class TestDeck(unittest.TestCase):
         print(card_count)
 
         self.assertGreater(card_count['Spades'], 4)
-        self.assertGreater(card_count['Hearts'], 6)
-        self.assertGreater(card_count['Clubs'], 4)
+        self.assertGreater(card_count['Hearts'], 3)
+        self.assertGreater(card_count['Clubs'], 7)
+        self.assertGreater(card_count['Diamonds'], 2)
 
-        self.assertEqual(1,2)
+    def test_joker_deck(self):
+        d = Deck(jokers=4)
+
+        cards = [ d.deal() for r in range(20) ]
+        card_count = defaultdict(int)
+        for c in cards:
+            card_count[c.suit] += 1
+
+        self.assertEqual(len(d.cards), 36)
+        print(card_count)
+        print(unicode(d))
+
+        self.assertEqual(card_count['Wild'], 2)
+        #self.assertEqual(1,2)

@@ -29,7 +29,7 @@ class Deck(object):
 
     def __unicode__(self):
         c_str = '\n'.join([ unicode(c) for c in self.cards ])
-        return 'Deck:\n{}'.format(c_str)
+        return 'Deck[{}]:\n{}'.format(len(self.cards),c_str)
         
     def contains(self, card):
         '''Check if card is contained in deck.
@@ -52,6 +52,7 @@ class Deck(object):
     def deal(self):
         '''Deal a card from the deck.
         If no cards left in deck None is returned.
+        Returns: Card object or None
         '''
         return self.cards.pop()  if len(self.cards) > 0 else None
 
