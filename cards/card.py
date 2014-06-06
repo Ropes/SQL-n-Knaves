@@ -1,12 +1,13 @@
 from __future__ import print_function, unicode_literals
 
+from collections import OrderedDict
 
 ranks = {'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10',\
         'Jack', 'Queen', 'King'}
 wild = {'Joker'}
 
-suits = {'Spades': ranks, 'Diamonds': ranks, 'Hearts': ranks, 'Clubs':ranks,\
-        'Wild': wild}
+suits = OrderedDict({'Spades': ranks, 'Diamonds': ranks, 'Hearts': ranks,\
+        'Clubs':ranks, 'Wild': wild})
 
 class Card(object):
     
