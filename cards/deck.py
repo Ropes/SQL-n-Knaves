@@ -13,10 +13,10 @@ class Deck(object):
 
     Args:
         jokers(bool, int): False if no jokers to be put in deck else num to add
-    
+        shuffle(bool): Shuffle deck after initialization
     '''
 
-    def __init__(self, jokers=False):
+    def __init__(self, jokers=False, shuffle=True):
         self.cards = []
         for suit, ranks in suits.items():
             if suit != 'Wild':
@@ -25,6 +25,7 @@ class Deck(object):
             elif suit == 'Wild' and jokers:
                 self.cards.extend(\
                         [ Card('Wild', 'Joker') for x in range(jokers)])
+        self.shuffle()
 
     def __unicode__(self):
         c_str = '\n'.join([ unicode(c) for c in self.cards ])
@@ -43,8 +44,14 @@ class Deck(object):
         return False
         
     def shuffle(self):
+        '''Shuffles list of cards in place
+        Attribute shuffled: self.cards
+        '''
         shuffle(self.cards)
 
-    def deal(self, num=1):
-        #TODO
-        pass
+    def deal(self):
+        '''Deal a card from the deck.
+        If no cards left in deck None is returned.
+        '''
+        return self.cards.pop()  if len(self.cards) > 0 else None
+
