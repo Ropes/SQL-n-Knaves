@@ -30,9 +30,11 @@ class Deck(object):
         
         Returns:
             True if Card found else False'''
-        pass
+        for c in self.cards:
+            if c == card:
+                return True
+        return False
         
-
     def shuffle(self):
         #TODO
         pass

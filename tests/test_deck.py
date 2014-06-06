@@ -3,6 +3,7 @@ from __future__ import print_function, unicode_literals
 import unittest
 
 from cards.deck import Deck
+from cards.card import Card
 
 class TestDeck(unittest.TestCase):
 
@@ -14,3 +15,8 @@ class TestDeck(unittest.TestCase):
         d = Deck(jokers=2)
         self.assertEqual(len(d.cards), 54)
 
+    def test_deck_contains_ace_of_hearts(self):
+        d = Deck()
+        c = Card('Hearts', 'Ace')
+
+        self.assertTrue(d.contains(c))
